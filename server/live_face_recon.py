@@ -180,7 +180,7 @@ class FaceIdentify(object):
                 label = "{}".format(predicted_names[i])
                 self.draw_label(frame, (face[0], face[1]), label)
 
-            cv2.imshow('Keras Faces', frame)
+            cv2.imshow('DeepFlicc Window', frame)
             if cv2.waitKey(5) == 27:  # ESC key press
                 break
         # When everything is done, release the capture
