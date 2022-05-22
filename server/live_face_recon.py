@@ -17,7 +17,7 @@ import socket
 
 host="0.0.0.0"
 port=5000
-max_length=2**16
+max_length=(2**16)+4
 
 
 sock=socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
@@ -25,7 +25,7 @@ sock.bind((host,port))
 
 
 frame_info=None
-buffer=None
+buffer_size=None
 frame=None
 
 def load_stuff(filename):
@@ -61,7 +61,7 @@ class FaceIdentify(object):
                    font_scale=1, thickness=2):
         size = cv2.getTextSize(label, font, font_scale, thickness)[0]
         x, y = point
-        cv2.rectangle(image, (x, y - size[1]), (x + size[0], y), (255, 0, 0), cv2.FILLED)
+        cv2.rectangle(image, (x, y - size[1]), (x + size[0], y), (0, 0, 255), cv2.FILLED)
         cv2.putText(image, label, point, font, font_scale, (255, 255, 255), thickness)
 
     def crop_face(self, imgarray, section, margin=20, size=224):
@@ -139,18 +139,22 @@ class FaceIdentify(object):
                             data, address = sock.recvfrom(max_length)
 
                             if i == 0:
-                                buffer = data
+                                buffer_size = data
                             else:
-                                 buffer += data
+                                 buffer_size += data
 
-                        frame_ = np.frombuffer(buffer, dtype=np.uint8)
-                        frame_= frame_.reshape(frame_.shape[0], 1)
+                        if buffer_size[-2:] !=b'\xff\xd9':
+                            continue
+                        else:
+                            frame_ = np.frombuffer(buffer_size, dtype=np.uint8)
+                            buffer_size=None #To avoid stack overflowing
+                            frame_= frame_.reshape(frame_.shape[0], 1)
 
-                        frame_ = cv2.imdecode(frame_, cv2.IMREAD_COLOR)
-                        frame_ = cv2.flip(frame_, 1)
+                            frame_ = cv2.imdecode(frame_, cv2.IMREAD_COLOR)
+                            frame_ = cv2.flip(frame_, 1)
 
-                        if frame_ is not None and type(frame_)==np.ndarray:
-                            frame=frame_
+                            if frame_ is not None and type(frame_)==np.ndarray:
+                                frame=frame_
 
 
 
