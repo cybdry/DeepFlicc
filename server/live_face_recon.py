@@ -34,6 +34,12 @@ def load_stuff(filename):
     saved_stuff.close()
     return stuff
 
+def jpeg_healthy_check(buffer_size) -> bool:
+    if (buffer_size[:2]==b'\xff\xd8' and buffer_size[-2:]==b'\xff\xd9'):
+        return True
+    else:
+        return False
+
 
 class FaceIdentify(object):
     """
@@ -143,8 +149,8 @@ class FaceIdentify(object):
                             else:
                                  buffer_size += data
 
-                        if buffer_size[-2:] !=b'\xff\xd9':
-                            continue
+                        if(jpeg_healthy_check(buffer_size) is False): #Detect  corrupted buffer_size then escap to the next
+                            buffer_size=None
                         else:
                             frame_ = np.frombuffer(buffer_size, dtype=np.uint8)
                             buffer_size=None #To avoid stack overflowing
