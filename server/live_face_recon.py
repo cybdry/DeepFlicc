@@ -39,6 +39,13 @@ def jpeg_healthy_check(buffer_size) -> bool:
         return True
     else:
         return False
+def list_to_string(_list):
+    string=""
+
+    for i in _list:
+        string +=str(i)
+
+    return string
 
 
 class FaceIdentify(object):
@@ -111,9 +118,9 @@ class FaceIdentify(object):
             distance = euclidean(person_features, features)
             distances.append(distance)
         min_distance_value = min(distances)
-        min_distance_index = distances.index(min_distance_value)
+        min_distance_index = distances.index(min_distance_value) 
         if min_distance_value < threshold:
-            return self.precompute_features_map[min_distance_index].get("name")
+            return min_distance_value,self.precompute_features_map[min_distance_index].get("name")
         else:
             return "?"
 
@@ -184,10 +191,14 @@ class FaceIdentify(object):
             if len(face_imgs) > 0:
                 # generate features for each face
                 features_faces = self.model.predict(face_imgs)
-                predicted_names = [self.identify_face(features_face) for features_face in features_faces]
+                #results=utils.decode_predictions(features_faces)[0][0][1]
+                predicted_names = [self.identify_face(features_face)[1] for features_face in features_faces]
+                confidence=[self.identify_face(features_face)[0] for features_face in features_faces]
+                print("Name:{} confidence {:.2f}%".format(predicted_names,float(list_to_string(confidence))))
+
             # draw results
             for i, face in enumerate(faces):
-                label = "{}".format(predicted_names[i])
+                label = "{}.{:.2f}%".format(predicted_names[i],confidence[i])
                 self.draw_label(frame, (face[0], face[1]), label)
 
             cv2.imshow('DeepFlicc Window', frame)
@@ -201,7 +212,7 @@ class FaceIdentify(object):
 
 def main():
     face = FaceIdentify(precompute_features_file="./data/precompute_features.pickle")
-    face.detect_face(remote=True)
+    face.detect_face()
 
 if __name__ == "__main__":
     main()
