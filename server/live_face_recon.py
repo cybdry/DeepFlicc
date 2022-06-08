@@ -13,6 +13,7 @@ import os
 import glob
 import pickle
 import socket
+import time
 
 
 host="0.0.0.0"
@@ -41,9 +42,7 @@ def jpeg_healthy_check(buffer_size) -> bool:
         return False
 def list_to_string(_list):
     string=""
-
-    for i in _list:
-        string +=str(i)
+    string +=str(_list[0])
 
     return string
 
@@ -121,8 +120,10 @@ class FaceIdentify(object):
         min_distance_index = distances.index(min_distance_value) 
         if min_distance_value < threshold:
             return min_distance_value,self.precompute_features_map[min_distance_index].get("name")
+            #time.sleep(0.1)
         else:
-            return "?"
+            return 0.0,"Unknown"
+            #time.sleep(0.1)
 
     def detect_face(self,remote=False):
         face_cascade = cv2.CascadeClassifier(self.CASE_PATH)
