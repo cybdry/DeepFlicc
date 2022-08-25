@@ -213,7 +213,7 @@ class FaceIdentify(object):
 
 def main():
     face = FaceIdentify(precompute_features_file="./data/precompute_features.pickle")
-    face.detect_face()
+    face.detect_face(remote=True)
 
 if __name__ == "__main__":
     main()

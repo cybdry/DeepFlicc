@@ -8,7 +8,18 @@ Computer vision Systems.
  - [ ] Finished the Qt interface to display more than one remote display simultanously
  
  # How to use the code 🔥
- - *Client Side source Code*\n
- first of all prepare you raspberry pi 3B+ or superior with pi camera runing raspbian operating system
- 
- 
+ - ***Client Side source Code<br/>***
+> first of all prepare you raspberry pi 3B+ or superior with pi camera runing raspbian operating system.<br/>
+Use [this]("https://www.hostinger.com/tutorials/how-to-use-putty-ssh")
+>  Make sure you have pip3 install in you system.You can check it by runing the command below:<br/>
+>
+```
+which pip3
+or 
+pip3 --version
+```
+if pip3 hasn't been installed you can installed by doing:
+```
+ sudo apt-get install python3-pip
+```
+
