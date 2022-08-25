@@ -9,7 +9,7 @@ import sys
 
 max_length = 65000
 host = sys.argv[1]
-port = 5000
+port = 5000 
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
