@@ -7,3 +7,8 @@ Computer vision Systems.
  - [ ] Connected more than one remote device
  - [ ] Finished the Qt interface to display more than one remote display simultanously
  
+ # How to use the code 🔥
+ - *Client Side source Code*\n
+ first of all prepare you raspberry pi 3B+ or superior with pi camera runing raspbian operating system
+ 
+ 
