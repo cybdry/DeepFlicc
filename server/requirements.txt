@@ -1,0 +1,7 @@
+keras_vggface
+keras
+tensorflow
+pickle
+numpy
+scipy
+opencv-python
