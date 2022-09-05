@@ -8,13 +8,11 @@ Computer vision Systems.
  - [ ] Finished the Qt interface to display more than one remote display simultanously
  
  # How to use the code 🔥
-<<<<<<< Updated upstream
+
  :fire: Warning :fire: This Project was `developed and tested on Linux based operating sistem`,I dont know if everything could gone well on Microsoft 
  Window Operating Systems.
  - ***Client Side source Code<br/>***
-=======
-## ***Client Side source Code<br/>***
->>>>>>> Stashed changes
+
 > first of all prepare you raspberry pi 3B+ or superior with pi camera runing raspbian operating system.<br/>
 Use [this tutorial](https://www.hostinger.com/tutorials/how-to-use-putty-ssh) to learn how to connect to your raspberry pi throught using putty ***if your host system is based on window operating system***. ***If your host system was  based in linux***, use [This tutorial](https://www.cyberciti.biz/faq/ubuntu-linux-install-openssh-server/).<br/>
 - *Step 1*: Make sure you have pip3 install in you system.You can check it by runing the command below:<br/>
@@ -27,7 +25,7 @@ if pip3 hasn't been installed you can installed by doing:
 ```
  sudo apt-get install python3-pip
 ```
-<<<<<<< Updated upstream
+
 After pip have been installed ,you can now install `python-opencv` and other dependencies by runing :
 ```
 pip install -r requirements.txt
@@ -53,10 +51,10 @@ If all was gone well ,it's time to start the training by runing:
 python precompute.py
 ```
 It may take some time to train the `Model`. A PC with a `GPU` enable can help a lot in the case you can many `classes`. 
-=======
+
 - *Step 2*: Install the required library
 move into `client` folder to run on command line `pip3 install -r requirements.txt` to install dependancies
->>>>>>> Stashed changes
+
 
 After the training it's time to see the result of the whole system.
 Start the server side code and make sure it's starting sending the data.After that start the server side code
