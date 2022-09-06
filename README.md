@@ -39,18 +39,18 @@ Dont forget to replace `<server-ip-address>` by the ip adress of your host compu
 If your host computer's OS is Linux based operating system, you can get the ip with these commands:`hostname -I `,`ifconfig` </br>
 if the Os is based on microsoft windows you can  run `ipconfig` by specifing other parameter of course.
 - ***Server Side Code</br>***
-First of all,go into the server folder and then the folder named `data/videos` and create some subfolder.
+First of all,go into the server folder and then the folder named `data/videos` and create some subfolders.
 The name of each subfolder must represent the name  of the persone you want your Model to identify.
-You have to take one or two short video like `10 secondes` each who capture every aspect of the face 
-of the persone you want identify and make sure that it's this persone onlly who appear in the video to 
-confuse the Network when training.
+You have to take one or two short video like `10 secondes` each that capture every aspect of the face 
+of the persone you want identify and make sure that it's only this persone  who appear in the video to not 
+confuse the Network during training process.
 After that go back to `server` folder and  run `pip install -r requirements.txt` to install dependencies.
 if `pip` was not installed followed the same step explained on client side code to install `pip`.
 If all was gone well ,it's time to start the training by runing:
 ```
 python precompute.py
 ```
-It may take some time to train the `Model`. A PC with a `GPU` enable can help a lot in the case you can many `classes`. 
+It may take some time to train the `Model`. A PC with a `GPU` enable can help a lot in the case you have many `classes`. 
 
 After the training it's time to see the result of the whole system.
 Start the server side code and make sure it's starting sending the data.After that start the server side code
