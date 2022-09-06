@@ -52,10 +52,6 @@ python precompute.py
 ```
 It may take some time to train the `Model`. A PC with a `GPU` enable can help a lot in the case you can many `classes`. 
 
-- *Step 2*: Install the required library
-move into `client` folder to run on command line `pip3 install -r requirements.txt` to install dependancies
-
-
 After the training it's time to see the result of the whole system.
 Start the server side code and make sure it's starting sending the data.After that start the server side code
 by runing  `python live_face_recon.py` . If everything is going well after some secondes you will see a video frame windows pop-up on your
